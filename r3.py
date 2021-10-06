@@ -30,7 +30,7 @@ else:
         pygame.display.set_caption('The Red Robot Radio - Virtualx Game Engine')
         font = pygame.font.Font(None, 30)
         clock = pygame.time.Clock()
-        FPS = 6000
+        FPS = 60
         BLACK = (0, 0, 0)
         #WHITE = (255, 255, 255)
         pygame.mixer.music.load('space.ogg')
@@ -338,9 +338,9 @@ else:
                 playtime = "%d:%02d:%02d:%03d" % (playhr, playmin, playsec, playmsec)
                 screen.blit(antenna.image, antenna.rect)
                 yourtimetext = font.render(str("Your Time"), True, pygame.Color('white'))
-                screen.blit(yourtimetext, (450, 500))
+                screen.blit(yourtimetext, (350, 400))
                 yourtime = font.render(str(playtime), True, pygame.Color('white'))
-                screen.blit(yourtime, (450, 540))
+                screen.blit(yourtime, (350, 440))
             else:
                 playhr = (int(runtime / 3600000))
                 playmin = (int(runtime / 60000) - (playhr * 60))
@@ -349,9 +349,9 @@ else:
                 playtime = "%d:%02d:%02d:%03d" % (playhr, playmin, playsec, playmsec)
                 screen.blit(supernova.image, supernova.rect)
                 yourtimetext = font.render(str("Your Time"), True, pygame.Color('white'))
-                screen.blit(yourtimetext, (450, 500))
+                screen.blit(yourtimetext, (350, 400))
                 yourtime = font.render(str(playtime), True, pygame.Color('white'))
-                screen.blit(yourtime, (450, 540))
+                screen.blit(yourtime, (350, 440))
             rfps = font.render(str(int(clock.get_fps())), True, pygame.Color('white'))
             screen.blit(rfps, (50, 50))
             if debug:
