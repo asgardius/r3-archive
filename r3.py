@@ -33,9 +33,9 @@ else:
         FPS = 60
         BLACK = (0, 0, 0)
         #WHITE = (255, 255, 255)
-        pygame.mixer.music.load('space.ogg')
-        csfx = pygame.mixer.Sound('crash.ogg')
-        lcfx = pygame.mixer.Sound('complete.ogg')
+        pygame.mixer.music.load('music/space.ogg')
+        csfx = pygame.mixer.Sound('sfx/crash.ogg')
+        lcfx = pygame.mixer.Sound('sfx/complete.ogg')
         pygame.mixer.music.play(-1)
         #sound = pygame.mixer.Sound(file='bmx.ogg')
         #raw_array = sound.get_raw()
@@ -47,7 +47,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = 0
                 self.y = 0
-                self.image = pygame.image.load('galaxy.png')
+                self.image = pygame.image.load('backgrounds/galaxy.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -75,7 +75,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = xset
                 self.y = yset
-                self.image = pygame.image.load('ss.png')
+                self.image = pygame.image.load('sprites/ss.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -112,7 +112,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = xset
                 self.y = yset
-                self.image = pygame.image.load('css.png')
+                self.image = pygame.image.load('sprites/css.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -125,7 +125,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = xset
                 self.y = yset
-                self.image = pygame.image.load('sat.png')
+                self.image = pygame.image.load('sprites/sat.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -138,7 +138,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = xset
                 self.y = yset
-                self.image = pygame.image.load('radio.png')
+                self.image = pygame.image.load('sprites/radio.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -151,7 +151,7 @@ else:
                 pygame.sprite.Sprite.__init__(self)
                 self.x = xset
                 self.y = yset
-                self.image = pygame.image.load('asteroid.png')
+                self.image = pygame.image.load('sprites/asteroid.png')
                 #self.image = pygame.Surface((32, 32))
                 #self.image.fill(WHITE)
                 #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
