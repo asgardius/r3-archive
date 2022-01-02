@@ -44,10 +44,10 @@ class Background(pygame.sprite.Sprite):
         self.velocity = [0, 0]
     def update(self):
         self.rect.move_ip(*self.velocity)
-class Supernova(pygame.sprite.Sprite):
+class Crash(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load('supernova.png')
+        self.image = pygame.image.load('backgrounds/crash.png')
         #self.image = pygame.Surface((32, 32))
         #self.image.fill(WHITE)
         self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -55,7 +55,7 @@ class Supernova(pygame.sprite.Sprite):
 class Antenna(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load('antenna.png')
+        self.image = pygame.image.load('backgrounds/antenna.png')
         #self.image = pygame.Surface((32, 32))
         #self.image.fill(WHITE)
         self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -140,6 +140,19 @@ class Goal(pygame.sprite.Sprite):
         self.velocity = [0, 0]
     def update(self):
         self.rect.move_ip(bx, by)
+class Bus(pygame.sprite.Sprite):
+    def __init__(self,xset,yset):
+        pygame.sprite.Sprite.__init__(self)
+        self.x = xset
+        self.y = yset
+        self.image = pygame.image.load('sprites/bus.png')
+        #self.image = pygame.Surface((32, 32))
+        #self.image.fill(WHITE)
+        #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
+        self.rect = pygame.Rect(self.x,self.y,69, 120)
+        self.velocity = [0, 0]
+    def update(self):
+        self.rect.move_ip(bx, by)
 class Ast1(pygame.sprite.Sprite):
     def __init__(self,xset,yset):
         pygame.sprite.Sprite.__init__(self)
@@ -185,6 +198,7 @@ css2 = Css(500,400)
 sat1 = Sat(550,-100)
 sat2 = Sat(600,100)
 goal = Goal(3000,-100)
+bus1 = Bus(600,656)
 ast1 = Ast1(120,200)
 ast2 = Ast2(300,100)
 ast3 = Ast3(500,150)
@@ -193,7 +207,7 @@ wall2 = Wallh(3100,-200)
 wall3 = Wallv(-200,-200)
 wall4 = Wallv(-200,800)
 background = Background()
-supernova = Supernova()
+crash = Crash()
 antenna = Antenna()
 running = True
 live = True
@@ -232,6 +246,7 @@ while running:
                 sat1 = Sat(550,-100)
                 sat2 = Sat(600,100)
                 goal = Goal(3000,-100)
+                bus1 = Bus(600,656)
                 ast1 = Ast1(120,200)
                 ast2 = Ast2(300,100)
                 ast3 = Ast3(500,150)
@@ -294,6 +309,10 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, bus1):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, goal):
                 live = False
                 complete = True
@@ -305,6 +324,7 @@ while running:
     sat1.update()
     sat2.update()
     goal.update()
+    bus1.update()
     ast1.update()
     ast2.update()
     ast3.update()
@@ -323,6 +343,7 @@ while running:
         screen.blit(sat1.image, sat1.rect)
         screen.blit(sat2.image, sat2.rect)
         screen.blit(goal.image, goal.rect)
+        screen.blit(bus1.image, bus1.rect)
         screen.blit(wall1.image, wall1.rect)
         screen.blit(wall2.image, wall2.rect)
         screen.blit(wall3.image, wall3.rect)
@@ -344,7 +365,7 @@ while running:
         playsec = (int(runtime / 1000) - (playmin * 60) - (playhr * 3600))
         playmsec = (runtime - (playsec * 1000) - (playmin * 60000) - (playhr * 3600000))
         playtime = "%d:%02d:%02d:%03d" % (playhr, playmin, playsec, playmsec)
-        screen.blit(supernova.image, supernova.rect)
+        screen.blit(crash.image, crash.rect)
         yourtimetext = font.render(str("Your Time"), True, pygame.Color('white'))
         screen.blit(yourtimetext, (350, 400))
         yourtime = font.render(str(playtime), True, pygame.Color('white'))
