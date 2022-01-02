@@ -178,6 +178,8 @@ else:
         running = True
         live = True
         complete = False
+        bx = 0
+        by = 0
         debug = False # This set debug mode
         #rect = pygame.Rect((0, 0), (32, 32))
         #image = pygame.Surface((32, 32))
@@ -188,20 +190,42 @@ else:
             dt = clock.tick(FPS) / 1000
             #screen.fill(BLACK)
             datetime.datetime.now()
+            #bx = 0
+            #by = 0
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                        by = -1
+                    elif event.key == pygame.K_s:
+                        by = 1
+                    elif event.key == pygame.K_a:
+                        bx = -1
+                    elif event.key == pygame.K_d:
+                        bx = 1
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_w:
+                        by = 0
+                    elif event.key == pygame.K_s:
+                        by = 0
+                    elif event.key == pygame.K_a:
+                        bx = 0
+                    elif event.key == pygame.K_d:
+                        bx = 0
             #ax and ay are for left stick
             ax = joystick.get_axis(0)
             ay = joystick.get_axis(1)
-            if gamepad == 1:
+            #bx = 0
+            #by = 0
+            #if gamepad == 1:
                 #bx and by are for right stick
-                bx = joystick.get_axis(2)
-                by = joystick.get_axis(3)
-            elif gamepad == 2:
+                #bx = joystick.get_axis(2)
+                #by = joystick.get_axis(3)
+            #elif gamepad == 2:
                 #bx and by are for right stick
-                bx = joystick.get_axis(3)
-                by = joystick.get_axis(4)
+                #bx = joystick.get_axis(3)
+                #by = joystick.get_axis(4)
             #b0 is for cross button on ds4
             b0 = joystick.get_button(0)
             #b1 is for circle button on ds4
