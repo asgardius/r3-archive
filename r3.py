@@ -5,9 +5,6 @@ import time
 import datetime
 import platform
 import subprocess
-#introplay = "ffplay -autoexit -window_title Intro intro.ogv"
-#process = subprocess.Popen(introplay.split(), stdout=subprocess.PIPE)
-#output, error = process.communicate()
 pygame.init()
 screen = pygame.display.set_mode((800, 480))
 pygame.display.set_caption('The Red Robot Radio - Virtualx Game Engine')
@@ -81,6 +78,7 @@ class Wallh(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.x = xset
         self.y = yset
+        self.image = pygame.image.load('sprites/wallh.png')
         #self.image = pygame.Surface((32, 32))
         #self.image.fill(WHITE)
         #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -93,6 +91,7 @@ class Wallv(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.x = xset
         self.y = yset
+        self.image = pygame.image.load('sprites/wallv.png')
         #self.image = pygame.Surface((32, 32))
         #self.image.fill(WHITE)
         #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
@@ -209,21 +208,11 @@ while running:
     dt = clock.tick(FPS) / 1000
     #screen.fill(BLACK)
     datetime.datetime.now()
-    #bx = 0
-    #by = 0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-                by = -1
-            elif event.key == pygame.K_s:
-                by = 1
-            elif event.key == pygame.K_a:
-                bx = -1
-            elif event.key == pygame.K_d:
-                bx = 1
-            elif event.key == pygame.K_n:
+            if event.key == pygame.K_n:
                 pygame.mixer.music.stop()
             elif event.key == pygame.K_m:
                 pygame.mixer.music.play(-1)
@@ -254,16 +243,8 @@ while running:
                 start_time = pygame.time.get_ticks()
             elif event.key == pygame.K_ESCAPE:
                 quit()
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
-                by = 0
-            elif event.key == pygame.K_s:
-                by = 0
-            elif event.key == pygame.K_a:
-                bx = 0
-            elif event.key == pygame.K_d:
-                bx = 0
         if event.type == pygame.MOUSEMOTION:
+            #This control camera
             pygame.mouse.set_pos([400, 240])
             ax, ay = event.rel
             bx = ax * 20
@@ -277,19 +258,23 @@ while running:
     if live:
         runtime = pygame.time.get_ticks() - start_time
         if (live & debug == False):
-            #if pygame.sprite.collide_rect(background, wall3):
-            #    if by < 0:
-            #        by = 0
-            #elif pygame.sprite.collide_rect(background, wall4):
-            #    if by > 0:
-            #        by = 0
-            #if pygame.sprite.collide_rect(background, wall1):
-            #    if bx < 0:
-            #        bx = 0
-            #elif pygame.sprite.collide_rect(background, wall2):
-            #    if bx > 0:
-            #        bx = 0
-            if pygame.sprite.collide_rect(player, css1):
+            if pygame.sprite.collide_rect(player, wall3):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, wall4):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            if pygame.sprite.collide_rect(player, wall1):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, wall2):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, css1):
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
@@ -310,24 +295,6 @@ while running:
                 complete = True
                 pygame.mixer.music.stop()
                 lcfx.play()
-        #player.velocity[0] = int(600 * dt * (ax - bx))
-        #player.velocity[1] = int(600 * dt * (ay - by))
-        #css1.velocity[0] = int(-600 * dt * bx)
-        #css1.velocity[1] = int(-600 * dt * by)
-        #css2.velocity = css1.velocity
-        #sat1.velocity = css1.velocity
-        #sat2.velocity = css1.velocity
-        #goal.velocity = css1.velocity
-        #wall1.velocity = css1.velocity
-        #wall2.velocity = css1.velocity
-        #wall3.velocity = css1.velocity
-        #wall4.velocity = css1.velocity
-        #ast1.velocity[0] = int(-200 * dt * bx)
-        #ast1.velocity[1] = int(-200 * dt * by)
-        #ast2.velocity[0] = int(-150 * dt * bx)
-        #ast2.velocity[1] = int(-150 * dt * by)
-        #ast3.velocity[0] = int(-120 * dt * bx)
-        #ast3.velocity[1] = int(-120 * dt * by)
     player.update()
     css1.update()
     css2.update()
@@ -352,6 +319,10 @@ while running:
         screen.blit(sat1.image, sat1.rect)
         screen.blit(sat2.image, sat2.rect)
         screen.blit(goal.image, goal.rect)
+        screen.blit(wall1.image, wall1.rect)
+        screen.blit(wall2.image, wall2.rect)
+        screen.blit(wall3.image, wall3.rect)
+        screen.blit(wall4.image, wall4.rect)
     elif complete:
         playhr = (int(runtime / 3600000))
         playmin = (int(runtime / 60000) - (playhr * 60))
