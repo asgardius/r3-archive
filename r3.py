@@ -19,6 +19,8 @@ cx = 0
 cy = 0
 dx = 0
 dy = 0
+ex = 0
+ey = 0
 BLACK = (0, 0, 0)
 #WHITE = (255, 255, 255)
 pygame.mixer.music.load('music/space.ogg')
@@ -176,7 +178,7 @@ class Ast3(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x,self.y,108, 78)
         self.velocity = [0, 0]
     def update(self):
-        self.rect.move_ip(ax, ay)
+        self.rect.move_ip(ex, ey)
 player = Player(346,206)
 css1 = Css(483,262)
 css2 = Css(500,400)
@@ -247,12 +249,14 @@ while running:
             #This control camera
             pygame.mouse.set_pos([400, 240])
             ax, ay = event.rel
-            bx = ax * 20
-            by = ay * 20
-            cx = ax * 4
-            cy = ay * 4
-            dx = ax * 2
-            dy = ay * 2
+            bx = ax * 7
+            by = ay * 7
+            cx = ax * 1
+            cy = ay * 1
+            dx = ax * 0.5
+            dy = ay * 0.5
+            ex = ax * 0.1
+            ey = ay * 0.1
 
 
     if live:
