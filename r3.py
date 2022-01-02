@@ -223,20 +223,25 @@ class Ast3(pygame.sprite.Sprite):
 player = Player(346,206)
 css1 = Css(483,262)
 css2 = Css(500,400)
+css3 = Css(1582,470)
 sat1 = Sat(550,-100)
 sat2 = Sat(600,100)
-goal = Goal(3000,-100)
+sat3 = Sat(1240,120)
+goal = Goal(1940,-16)
 bus1 = Bus(600,656)
 bus2 = Bus(1258,320)
+bus3 = Bus(1970,524)
 tc1 = Tc(854,472)
 tc2 = Tc(1164,570)
+tc3 = Tc(1760,680)
 iss1 = Iss(878,140)
 iss2 = Iss(1136,-6)
+iss3 = Iss(1742,222)
 ast1 = Ast1(120,200)
 ast2 = Ast2(300,100)
 ast3 = Ast3(500,150)
 wall1 = Wallh(-100,-200)
-wall2 = Wallh(3100,-200)
+wall2 = Wallh(2150,-200)
 wall3 = Wallv(-200,-200)
 wall4 = Wallv(-200,800)
 background = Background()
@@ -276,20 +281,25 @@ while running:
                 player = Player(346,206)
                 css1 = Css(483,262)
                 css2 = Css(500,400)
+                css3 = Css(1582,470)
                 sat1 = Sat(550,-100)
                 sat2 = Sat(600,100)
-                goal = Goal(3000,-100)
+                sat3 = Sat(1240,120)
+                goal = Goal(1940,-16)
                 bus1 = Bus(600,656)
                 bus2 = Bus(1258,320)
+                bus3 = Bus(1970,524)
                 tc1 = Tc(854,472)
                 tc2 = Tc(1164,570)
+                tc3 = Tc(1760,680)
                 iss1 = Iss(878,140)
                 iss2 = Iss(1136,-6)
+                iss3 = Iss(1742,222)
                 ast1 = Ast1(120,200)
                 ast2 = Ast2(300,100)
                 ast3 = Ast3(500,150)
                 wall1 = Wallh(-100,-200)
-                wall2 = Wallh(3100,-200)
+                wall2 = Wallh(2150,-200)
                 wall3 = Wallv(-200,-200)
                 wall4 = Wallv(-200,800)
                 live = True
@@ -324,7 +334,7 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
-            if pygame.sprite.collide_rect(player, wall1):
+            elif pygame.sprite.collide_rect(player, wall1):
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
@@ -340,6 +350,10 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, css3):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, sat1):
                 live = False
                 pygame.mixer.music.stop()
@@ -348,15 +362,11 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, sat3):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, bus1):
-                live = False
-                pygame.mixer.music.stop()
-                csfx.play()
-            elif pygame.sprite.collide_rect(player, tc1):
-                live = False
-                pygame.mixer.music.stop()
-                csfx.play()
-            elif pygame.sprite.collide_rect(player, iss1):
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
@@ -364,11 +374,23 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, tc1):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, tc2):
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, iss1):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, iss2):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, iss3):
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
@@ -380,15 +402,20 @@ while running:
     player.update()
     css1.update()
     css2.update()
+    css3.update()
     sat1.update()
     sat2.update()
+    sat3.update()
     goal.update()
     bus1.update()
     bus2.update()
+    bus3.update()
     tc1.update()
     tc2.update()
+    tc3.update()
     iss1.update()
     iss2.update()
+    iss3.update()
     ast1.update()
     ast2.update()
     ast3.update()
@@ -399,20 +426,25 @@ while running:
     if live:
         screen.blit(background.image, background.rect)
         screen.blit(ast3.image, ast3.rect)
-        screen.blit(ast1.image, ast2.rect)
+        screen.blit(ast2.image, ast2.rect)
         screen.blit(ast1.image, ast1.rect)
         screen.blit(player.image, player.rect)
         screen.blit(css1.image, css1.rect)
         screen.blit(css2.image, css2.rect)
+        screen.blit(css3.image, css3.rect)
         screen.blit(sat1.image, sat1.rect)
         screen.blit(sat2.image, sat2.rect)
+        screen.blit(sat3.image, sat3.rect)
         screen.blit(goal.image, goal.rect)
         screen.blit(bus1.image, bus1.rect)
         screen.blit(bus2.image, bus2.rect)
+        screen.blit(bus3.image, bus3.rect)
         screen.blit(tc1.image, tc1.rect)
         screen.blit(tc2.image, tc2.rect)
+        screen.blit(tc3.image, tc3.rect)
         screen.blit(iss1.image, iss1.rect)
         screen.blit(iss2.image, iss2.rect)
+        screen.blit(iss3.image, iss3.rect)
         screen.blit(wall1.image, wall1.rect)
         screen.blit(wall2.image, wall2.rect)
         screen.blit(wall3.image, wall3.rect)
