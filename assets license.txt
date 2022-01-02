@@ -1,8 +1,9 @@
-space.ogg - Mid-Air Machine - Creative Commons Attribution-ShareAlike
-galaxy.png - NASA - Public Domain
-ss.png - Pixabay - Pixabay License
-css.png - Pixabay - Pixabay License
-sat.png - NASA - Public Domain
-asteroid.png - NASA - Public Domain
-radio.png - NASA and Page Asgardius - Public Domain
-supernova - NASA/JPL-Caltech - Public Domain
+music/space.ogg - Mid-Air Machine - Creative Commons Attribution-ShareAlike
+backgrounds/galaxy.png - NASA - Public Domain
+sprites/ss.png - Pixabay - Pixabay License
+sprites/css.png - Pixabay - Pixabay License
+sprites/sat.png - NASA - Public Domain
+sprites/asteroid.png - NASA - Public Domain
+sprites/radio.png - NASA and Page Asgardius - Public Domain
+backgrounds/supernova.png - NASA/JPL-Caltech - Public Domain
+sprites/iss.png - ESA/NASA - Creative Commons Attribution-ShareAlike 3.0 IGO

@@ -10,7 +10,7 @@ screen = pygame.display.set_mode((800, 480))
 pygame.display.set_caption('The Red Robot Radio - Virtualx Game Engine')
 font = pygame.font.Font(None, 30)
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 6000
 ax = 0
 ay = 0
 bx = 0
@@ -21,12 +21,14 @@ dx = 0
 dy = 0
 ex = 0
 ey = 0
+music = False #To disable music at game start set to false
 BLACK = (0, 0, 0)
 #WHITE = (255, 255, 255)
 pygame.mixer.music.load('music/space.ogg')
 csfx = pygame.mixer.Sound('sfx/crash.ogg')
 lcfx = pygame.mixer.Sound('sfx/complete.ogg')
-pygame.mixer.music.play(-1)
+if music:
+    pygame.mixer.music.play(-1)
 #sound = pygame.mixer.Sound(file='bmx.ogg')
 #raw_array = sound.get_raw()
 #raw_array = raw_array[100000:92557920]
@@ -166,6 +168,19 @@ class Tc(pygame.sprite.Sprite):
         self.velocity = [0, 0]
     def update(self):
         self.rect.move_ip(bx, by)
+class Iss(pygame.sprite.Sprite):
+    def __init__(self,xset,yset):
+        pygame.sprite.Sprite.__init__(self)
+        self.x = xset
+        self.y = yset
+        self.image = pygame.image.load('sprites/iss.png')
+        #self.image = pygame.Surface((32, 32))
+        #self.image.fill(WHITE)
+        #self.rect = self.image.get_rect()  # Get rect of some size as 'image'.
+        self.rect = pygame.Rect(self.x,self.y,98, 128)
+        self.velocity = [0, 0]
+    def update(self):
+        self.rect.move_ip(bx, by)
 class Ast1(pygame.sprite.Sprite):
     def __init__(self,xset,yset):
         pygame.sprite.Sprite.__init__(self)
@@ -212,7 +227,11 @@ sat1 = Sat(550,-100)
 sat2 = Sat(600,100)
 goal = Goal(3000,-100)
 bus1 = Bus(600,656)
+bus2 = Bus(1258,320)
 tc1 = Tc(854,472)
+tc2 = Tc(1164,570)
+iss1 = Iss(878,140)
+iss2 = Iss(1136,-6)
 ast1 = Ast1(120,200)
 ast2 = Ast2(300,100)
 ast3 = Ast3(500,150)
@@ -261,7 +280,11 @@ while running:
                 sat2 = Sat(600,100)
                 goal = Goal(3000,-100)
                 bus1 = Bus(600,656)
+                bus2 = Bus(1258,320)
                 tc1 = Tc(854,472)
+                tc2 = Tc(1164,570)
+                iss1 = Iss(878,140)
+                iss2 = Iss(1136,-6)
                 ast1 = Ast1(120,200)
                 ast2 = Ast2(300,100)
                 ast3 = Ast3(500,150)
@@ -271,7 +294,8 @@ while running:
                 wall4 = Wallv(-200,800)
                 live = True
                 complete = False
-                pygame.mixer.music.play(-1)
+                if music:
+                    pygame.mixer.music.play(-1)
                 start_time = pygame.time.get_ticks()
             elif event.key == pygame.K_ESCAPE:
                 quit()
@@ -332,6 +356,22 @@ while running:
                 live = False
                 pygame.mixer.music.stop()
                 csfx.play()
+            elif pygame.sprite.collide_rect(player, iss1):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, bus2):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, tc2):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
+            elif pygame.sprite.collide_rect(player, iss2):
+                live = False
+                pygame.mixer.music.stop()
+                csfx.play()
             elif pygame.sprite.collide_rect(player, goal):
                 live = False
                 complete = True
@@ -344,7 +384,11 @@ while running:
     sat2.update()
     goal.update()
     bus1.update()
+    bus2.update()
     tc1.update()
+    tc2.update()
+    iss1.update()
+    iss2.update()
     ast1.update()
     ast2.update()
     ast3.update()
@@ -364,7 +408,11 @@ while running:
         screen.blit(sat2.image, sat2.rect)
         screen.blit(goal.image, goal.rect)
         screen.blit(bus1.image, bus1.rect)
+        screen.blit(bus2.image, bus2.rect)
         screen.blit(tc1.image, tc1.rect)
+        screen.blit(tc2.image, tc2.rect)
+        screen.blit(iss1.image, iss1.rect)
+        screen.blit(iss2.image, iss2.rect)
         screen.blit(wall1.image, wall1.rect)
         screen.blit(wall2.image, wall2.rect)
         screen.blit(wall3.image, wall3.rect)
