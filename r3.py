@@ -159,8 +159,8 @@ else:
                 self.velocity = [0, 0]
             def update(self):
                 self.rect.move_ip(*self.velocity)
-        player = Player(12,190)
-        css1 = Css(400,190)
+        player = Player(346,206)
+        css1 = Css(483,262)
         css2 = Css(500,400)
         sat1 = Sat(550,-100)
         sat2 = Sat(600,100)
@@ -178,6 +178,8 @@ else:
         running = True
         live = True
         complete = False
+        ax = 0
+        ay = 0
         bx = 0
         by = 0
         debug = False # This set debug mode
@@ -204,6 +206,35 @@ else:
                         bx = -1
                     elif event.key == pygame.K_d:
                         bx = 1
+                    elif event.key == pygame.K_n:
+                        pygame.mixer.music.stop()
+                    elif event.key == pygame.K_m:
+                        pygame.mixer.music.play(-1)
+                    elif event.key == pygame.K_c:
+                        if debug:
+                            #this trigger spaceship crash event
+                            live = False
+                            pygame.mixer.music.stop()
+                            csfx.play()
+                    elif event.key == pygame.K_r:
+                        #this restart the game
+                        player = Player(346,206)
+                        css1 = Css(483,262)
+                        css2 = Css(500,400)
+                        sat1 = Sat(550,-100)
+                        sat2 = Sat(600,100)
+                        goal = Goal(3000,-100)
+                        ast1 = Ast(120,200)
+                        ast2 = Ast(300,100)
+                        ast3 = Ast(500,150)
+                        wall1 = Wallh(-100,-200)
+                        wall2 = Wallh(3100,-200)
+                        wall3 = Wallv(-200,-200)
+                        wall4 = Wallv(-200,800)
+                        live = True
+                        complete = False
+                        pygame.mixer.music.play(-1)
+                        start_time = pygame.time.get_ticks()
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_w:
                         by = 0
@@ -214,8 +245,8 @@ else:
                     elif event.key == pygame.K_d:
                         bx = 0
             #ax and ay are for left stick
-            ax = joystick.get_axis(0)
-            ay = joystick.get_axis(1)
+            #ax = joystick.get_axis(0)
+            #ay = joystick.get_axis(1)
             #bx = 0
             #by = 0
             #if gamepad == 1:
@@ -237,18 +268,18 @@ else:
             if live:
                 runtime = pygame.time.get_ticks() - start_time
                 if (live & debug == False):
-                    if pygame.sprite.collide_rect(player, wall3):
-                        if ay < 0:
-                            ay = 0
-                    elif pygame.sprite.collide_rect(player, wall4):
-                        if ay > 0:
-                            ay = 0
-                    if pygame.sprite.collide_rect(player, wall1):
-                        if ax < 0:
-                            ax = 0
-                    elif pygame.sprite.collide_rect(player, wall2):
-                        if ax > 0:
-                            ax = 0
+                    #if pygame.sprite.collide_rect(player, wall3):
+                    #    if ay < 0:
+                    #        ay = 0
+                    #elif pygame.sprite.collide_rect(player, wall4):
+                    #    if ay > 0:
+                    #        ay = 0
+                    #if pygame.sprite.collide_rect(player, wall1):
+                    #    if ax < 0:
+                    #        ax = 0
+                    #elif pygame.sprite.collide_rect(player, wall2):
+                    #    if ax > 0:
+                    #        ax = 0
                     if pygame.sprite.collide_rect(background, wall3):
                         if by < 0:
                             by = 0
@@ -282,8 +313,8 @@ else:
                         complete = True
                         pygame.mixer.music.stop()
                         lcfx.play()
-                player.velocity[0] = int(600 * dt * (ax - bx))
-                player.velocity[1] = int(600 * dt * (ay - by))
+                #player.velocity[0] = int(600 * dt * (ax - bx))
+                #player.velocity[1] = int(600 * dt * (ay - by))
                 css1.velocity[0] = int(-600 * dt * bx)
                 css1.velocity[1] = int(-600 * dt * by)
                 css2.velocity = css1.velocity
@@ -313,8 +344,8 @@ else:
                 csfx.play()
             elif b3:
                 #this restart the game
-                player = Player(12,190)
-                css1 = Css(400,190)
+                player = Player(346,206)
+                css1 = Css(483,262)
                 css2 = Css(500,400)
                 sat1 = Sat(550,-100)
                 sat2 = Sat(600,100)
