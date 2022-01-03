@@ -315,12 +315,12 @@ while running:
             ax, ay = event.rel
             bx = ax * 7
             by = ay * 7
-            cx = ax * 1
-            cy = ay * 1
-            dx = ax * 0.5
-            dy = ay * 0.5
-            ex = ax * 0.1
-            ey = ay * 0.1
+            cx = ax * 3
+            cy = ay * 3
+            dx = ax * 2
+            dy = ay * 2
+            ex = ax * 1
+            ey = ay * 1
 
 
     if live:
