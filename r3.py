@@ -7,7 +7,7 @@ import platform
 import subprocess
 pygame.init()
 screen = pygame.display.set_mode((800, 480))
-pygame.display.set_caption('The Red Robot Radio 1.0.0 - Virtualx Game Engine')
+pygame.display.set_caption('The Red Robot Radio 1.0.1 - Virtualx Game Engine')
 font = pygame.font.Font(None, 30)
 clock = pygame.time.Clock()
 FPS = 6000
