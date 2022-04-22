@@ -245,7 +245,10 @@ wall1 = Wallh(-100,-200)
 wall2 = Wallh(2150,-200)
 wall3 = Wallv(-200,-200)
 wall4 = Wallv(-200,800)
-background = Background('backgrounds/galaxy.png')
+if int(datetime.datetime.utcnow().timestamp() % 2) == 1:
+    background = Background('backgrounds/wormhole.png')
+else:
+    background = Background('backgrounds/galaxy.png')
 #crash = Crash()
 #antenna = Antenna()
 running = True
@@ -304,7 +307,10 @@ while running:
                 wall2 = Wallh(2150,-200)
                 wall3 = Wallv(-200,-200)
                 wall4 = Wallv(-200,800)
-                background = Background('backgrounds/galaxy.png')
+                if int(datetime.datetime.utcnow().timestamp() % 2) == 1:
+                    background = Background('backgrounds/wormhole.png')
+                else:
+                    background = Background('backgrounds/galaxy.png')
                 live = True
                 complete = False
                 if music:
