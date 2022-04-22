@@ -25,7 +25,7 @@ ey = 0
 music = False #To disable music at game start set to false
 BLACK = (0, 0, 0)
 #WHITE = (255, 255, 255)
-pygame.mixer.music.load('music/space.ogg')
+#pygame.mixer.music.load('music/galaxy.opus')
 csfx = pygame.mixer.Sound('sfx/crash.ogg')
 lcfx = pygame.mixer.Sound('sfx/complete.ogg')
 if music:
@@ -223,6 +223,7 @@ class Ast3(pygame.sprite.Sprite):
         self.rect.move_ip(ex, ey)
 if int(datetime.datetime.utcnow().timestamp() % 2) == 1:
     background = Background('backgrounds/wormhole.png')
+    pygame.mixer.music.load('music/wormhole.opus')
     player = Player(346,206)
     css1 = Css(551,381)
     css2 = Css(772,399)
@@ -250,6 +251,7 @@ if int(datetime.datetime.utcnow().timestamp() % 2) == 1:
 
 else:
     background = Background('backgrounds/galaxy.png')
+    pygame.mixer.music.load('music/galaxy.opus')
     player = Player(346,206)
     css1 = Css(483,262)
     css2 = Css(500,400)
@@ -310,6 +312,7 @@ while running:
                 #this restart the game
                 if int(datetime.datetime.utcnow().timestamp() % 2) == 1:
                     background = Background('backgrounds/wormhole.png')
+                    pygame.mixer.music.load('music/wormhole.opus')
                     player = Player(346,206)
                     css1 = Css(551,381)
                     css2 = Css(772,399)
@@ -336,6 +339,7 @@ while running:
                     wall4 = Wallv(-200,800)
                 else:
                     background = Background('backgrounds/galaxy.png')
+                    pygame.mixer.music.load('music/galaxy.opus')
                     player = Player(346,206)
                     css1 = Css(483,262)
                     css2 = Css(500,400)
