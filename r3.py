@@ -28,8 +28,8 @@ BLACK = (0, 0, 0)
 #pygame.mixer.music.load('music/galaxy.opus')
 csfx = pygame.mixer.Sound('sfx/crash.ogg')
 lcfx = pygame.mixer.Sound('sfx/complete.ogg')
-if music:
-    pygame.mixer.music.play(-1)
+#if music:
+#    pygame.mixer.music.play(-1)
 #sound = pygame.mixer.Sound(file='bmx.ogg')
 #raw_array = sound.get_raw()
 #raw_array = raw_array[100000:92557920]
@@ -278,6 +278,8 @@ else:
     wall4 = Wallv(-200,800)
 #crash = Crash()
 #antenna = Antenna()
+if music:
+    pygame.mixer.music.play(-1)
 running = True
 live = True
 complete = False
@@ -364,6 +366,8 @@ while running:
                     wall2 = Wallh(2150,-200)
                     wall3 = Wallv(-200,-200)
                     wall4 = Wallv(-200,800)
+                if music:
+                    pygame.mixer.music.play(-1)
                 live = True
                 complete = False
                 if music:
