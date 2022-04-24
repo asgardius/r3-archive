@@ -1,9 +1,15 @@
-music/space.ogg - Mid-Air Machine - Creative Commons Attribution-ShareAlike
+music/galaxy.opus - Mid-Air Machine - Creative Commons Attribution-ShareAlike
+music/wormhole.opus - Page Asgardius and Mid-Air Machine - Creative Commons Attribution-ShareAlike
 backgrounds/galaxy.png - NASA - Public Domain
+backgrounds/wormhole.png - Pixabay - Public Domain
+backgrounds/crash.png - Pixabay and Page Asgardius - Pixabay License
+backgrounds/antenna.png - NASA and Page Asgardius - Public Domain
+backgrounds/supernova.png - NASA/JPL-Caltech - Public Domain
 sprites/ss.png - Pixabay - Pixabay License
 sprites/css.png - Pixabay - Pixabay License
 sprites/sat.png - NASA - Public Domain
 sprites/asteroid.png - NASA - Public Domain
 sprites/radio.png - NASA and Page Asgardius - Public Domain
-backgrounds/supernova.png - NASA/JPL-Caltech - Public Domain
 sprites/iss.png - ESA/NASA - Creative Commons Attribution-ShareAlike 3.0 IGO
+sprites/wallh.png - Page Asgardius - Public Domain
+sprites/wallv.png - Page Asgardius - Public Domain
