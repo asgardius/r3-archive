@@ -281,7 +281,7 @@ else:
 if music:
     pygame.mixer.music.play(-1)
 running = True
-rstate = 0
+rstate = 1
 # 0 for title screen
 # 1 for live spaceship
 # 2 for crashed spaceship
@@ -541,37 +541,25 @@ while running:
         screen.blit(wall2.image, wall2.rect)
         screen.blit(wall3.image, wall3.rect)
         screen.blit(wall4.image, wall4.rect)
-    elif complete:
-        playhr = (int(runtime / 3600000))
-        playmin = (int(runtime / 60000) - (playhr * 60))
-        playsec = (int(runtime / 1000) - (playmin * 60) - (playhr * 3600))
-        playmsec = (runtime - (playsec * 1000) - (playmin * 60000) - (playhr * 3600000))
-        playtime = "%d:%02d:%02d:%03d" % (playhr, playmin, playsec, playmsec)
-        #screen.blit(antenna.image, antenna.rect)
-        yourtimetext = font.render(str("Your Time"), True, pygame.Color('white'))
-        screen.blit(yourtimetext, (350, 400))
-        yourtime = font.render(str(playtime), True, pygame.Color('white'))
-        screen.blit(yourtime, (350, 440))
     else:
         playhr = (int(runtime / 3600000))
         playmin = (int(runtime / 60000) - (playhr * 60))
         playsec = (int(runtime / 1000) - (playmin * 60) - (playhr * 3600))
         playmsec = (runtime - (playsec * 1000) - (playmin * 60000) - (playhr * 3600000))
         playtime = "%d:%02d:%02d:%03d" % (playhr, playmin, playsec, playmsec)
-        #screen.blit(crash.image, crash.rect)
         yourtimetext = font.render(str("Your Time"), True, pygame.Color('white'))
         screen.blit(yourtimetext, (350, 400))
         yourtime = font.render(str(playtime), True, pygame.Color('white'))
         screen.blit(yourtime, (350, 440))
-    rfps = font.render(str(int(rstate)), True, pygame.Color('white'))
-    #rfps = font.render(str(int(clock.get_fps())), True, pygame.Color('white'))
+    #rfps = font.render(str(int(rstate)), True, pygame.Color('white'))
+    rfps = font.render(str(int(clock.get_fps())), True, pygame.Color('white'))
     screen.blit(rfps, (50, 50))
     if debug:
         sysclock = font.render(str(datetime.datetime.utcnow()), True, pygame.Color('white'))
         cpuarch = font.render(str(platform.machine()), True, pygame.Color('white'))
         playcount = font.render(str(runtime), True, pygame.Color('white'))
-        infox = font.render(str(bx), True, pygame.Color('white'))
-        infoy = font.render(str(by), True, pygame.Color('white'))
+        infox = font.render(str(ax), True, pygame.Color('white'))
+        infoy = font.render(str(ay), True, pygame.Color('white'))
         screen.blit(sysclock, (120, 50))
         screen.blit(cpuarch, (50, 80))
         screen.blit(playcount, (160, 80))
