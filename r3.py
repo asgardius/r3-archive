@@ -281,6 +281,11 @@ else:
 if music:
     pygame.mixer.music.play(-1)
 running = True
+rstate = 0
+# 0 for title screen
+# 1 for live spaceship
+# 2 for crashed spaceship
+# 3 for completed
 live = True
 complete = False
 debug = False # This set debug mode
@@ -307,6 +312,7 @@ while running:
                 if debug:
                     #this trigger spaceship crash event
                     live = False
+                    rstate = 2
                     pygame.mixer.music.stop()
                     background = Background('backgrounds/crash.png')
                     csfx.play()
@@ -370,6 +376,7 @@ while running:
                     pygame.mixer.music.play(-1)
                 live = True
                 complete = False
+                rstate = 1
                 if music:
                     pygame.mixer.music.play(-1)
                 start_time = pygame.time.get_ticks()
@@ -389,97 +396,96 @@ while running:
             ey = ay * 1
 
 
-    if live:
+    if (rstate == 1):
         runtime = pygame.time.get_ticks() - start_time
-        if (live & debug == False):
+        if (debug == False):
             if pygame.sprite.collide_rect(player, wall3):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, wall4):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, wall1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, wall2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, css1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, css2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, css3):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, sat1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, sat2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, sat3):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, bus1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, bus2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, tc1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, tc2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, iss1):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, iss2):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, iss3):
-                live = False
+                rstate = 2
                 pygame.mixer.music.stop()
                 background = Background(crashbg)
                 csfx.play()
             elif pygame.sprite.collide_rect(player, goal):
-                live = False
-                complete = True
+                rstate = 3
                 pygame.mixer.music.stop()
                 background = Background('backgrounds/antenna.png')
                 lcfx.play()
@@ -509,7 +515,7 @@ while running:
     wall4.update()
     background.update()
     screen.blit(background.image, background.rect)
-    if live:
+    if (rstate == 1):
         #screen.blit(background.image, background.rect)
         screen.blit(ast3.image, ast3.rect)
         screen.blit(ast2.image, ast2.rect)
@@ -557,7 +563,8 @@ while running:
         screen.blit(yourtimetext, (350, 400))
         yourtime = font.render(str(playtime), True, pygame.Color('white'))
         screen.blit(yourtime, (350, 440))
-    rfps = font.render(str(int(clock.get_fps())), True, pygame.Color('white'))
+    rfps = font.render(str(int(rstate)), True, pygame.Color('white'))
+    #rfps = font.render(str(int(clock.get_fps())), True, pygame.Color('white'))
     screen.blit(rfps, (50, 50))
     if debug:
         sysclock = font.render(str(datetime.datetime.utcnow()), True, pygame.Color('white'))
