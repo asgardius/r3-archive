@@ -281,13 +281,11 @@ else:
 if music:
     pygame.mixer.music.play(-1)
 running = True
-rstate = 1
+rstate = 0
 # 0 for title screen
 # 1 for live spaceship
 # 2 for crashed spaceship
 # 3 for completed
-live = True
-complete = False
 debug = False # This set debug mode
 pygame.mouse.set_visible(False)
 #rect = pygame.Rect((0, 0), (32, 32))
@@ -541,6 +539,9 @@ while running:
         screen.blit(wall2.image, wall2.rect)
         screen.blit(wall3.image, wall3.rect)
         screen.blit(wall4.image, wall4.rect)
+    elif (rstate == 0):
+        yourtimetext = font.render(str("Move computer mouse and press R to start playing"), True, pygame.Color('white'))
+        screen.blit(yourtimetext, (150, 400))
     else:
         playhr = (int(runtime / 3600000))
         playmin = (int(runtime / 60000) - (playhr * 60))
